@@ -12,7 +12,7 @@ app.get('/projects', (req, res) => {
 
 app.post('/projects', (req, res) => {
   const newProject = {
-    id: Date.now().toString(), // Генерируем уникальный ID
+    id: Date.now().toString(),
     name: req.body.name,
     description: req.body.description,
     deadline: req.body.deadline,
