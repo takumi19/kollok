@@ -6,6 +6,17 @@ let projects = [];
 
 app.use(express.json());
 
+function isDateFormatValid(dateString) {
+    const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+    return dateFormatRegex.test(dateString);
+}
+
+function isStringDigitsOnly(str) {
+    const digitsRegex = /^[0-9]+$/;
+    return digitsRegex.test(str);
+}
+  
+
 app.get('/projects', (req, res) => {
   res.json(projects);
 });
@@ -18,6 +29,10 @@ app.post('/projects', (req, res) => {
     deadline: req.body.deadline,
     participants: req.body.participants
   };
+  if (!isDateFormatValid(req.body.deadline)) {
+    res.status(400).json({ error: 'Incorrect date' });
+    return;
+  }
 
   projects.push(newProject);
 
