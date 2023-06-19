@@ -9,13 +9,7 @@ app.use(express.json());
 function isDateFormatValid(dateString) {
     const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
     return dateFormatRegex.test(dateString);
-}
-
-function isStringDigitsOnly(str) {
-    const digitsRegex = /^[0-9]+$/;
-    return digitsRegex.test(str);
-}
-  
+} 
 
 app.get('/projects', (req, res) => {
   res.json(projects);
